@@ -2,11 +2,16 @@ import { Sequelize } from 'sequelize';
 import 'dotenv/config'
 
 // postgresql connection
+console.log(process.env.DATABASE_URL);
 
-const sequelize = new Sequelize(`${process.env.DB_NAME}`, `${process.env.DB_USER}`, `${process.env.DB_PASSWORD}`, {
-  host: 'localhost',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  logging: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 });
 
 sequelize.authenticate()

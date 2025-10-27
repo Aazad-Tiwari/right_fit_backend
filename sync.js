@@ -1,5 +1,5 @@
 import sequelize from './src/config/db.js';
-// import University from './src/models/University.js';
+import University from './src/models/University.js';
 
 
 const syncDB = async () => {
